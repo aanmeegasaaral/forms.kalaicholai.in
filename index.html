@@ -222,7 +222,7 @@ input[type=radio] {
 
   </style>
   <script>
-      var options = {"id":2,"app":"\/\/forms.sva.run\/app","tracker":"js\/form.tracker.js","name":"#form-app","actionUrl":"https:\/\/forms.sva.run\/app\/f?id=2","validationUrl":"https:\/\/forms.sva.run\/app\/check?id=2","_csrf":"U3xrB6WysYAYKkLl5D7xTnk4aPraDt-0ThF_F9WX4yAiOzIw3YTp83t7cteLTcMdAWsDvKpl7_orQjFyluSxUw==","resume":0,"text_direction":"ltr","autocomplete":0,"novalidate":1,"analytics":1,"confirmationType":1,"confirmationMessage":false,"confirmationUrl":"","confirmationSeconds":null,"confirmationAppend":0,"confirmationAlias":0,"showOnlyMessage":1,"redirectToUrl":2,"rules":[],"fieldIds":["text_1","date_1","radio_1_0","radio_1_1","textarea_2","text_2","text_3","email_1","number_1","radio_2_0","radio_2_1","radio_2_2","radio_2_3","checkbox_5_0","checkbox_5_1","checkbox_5_2","checkbox_5_3","checkbox_5_4","checkbox_5_5","checkbox_5_6","checkbox_5_7","checkbox_5_8","checkbox_5_9","checkbox_5_10","checkbox_5_11","checkbox_5_12","checkbox_5_13","checkbox_5_14","checkbox_5_15","textarea_1","button_1"],"submitted":false,"runOppositeActions":true,"skips":[],"reCaptchaVersion":"3","reCaptchaSiteKey":"6LeZkxYiAAAAAKVITdlqhB6u2P7VSKxi6xInXns2","defaultValues":false,"i18n":{"complete":"Complete","unexpectedError":"An unexpected error has occurred. Please retry later."}};
+      var options = {"id":2,"app":"\/\/forms.sva.run\/app","tracker":"js\/form.tracker.js","name":"#form-app","actionUrl":"https:\/\/forms.sva.run\/app\/f?id=2","validationUrl":"https:\/\/forms.sva.run\/app\/check?id=2","_csrf":"NSFiTNwZEQkIZff2t3iNN_W6PkjW1wGrsd7_MY6RjLQNVVANiGhWT0ARzqPuAKBbufNXP7mZcpram8YA46jb_g==","resume":0,"text_direction":"ltr","autocomplete":0,"novalidate":0,"analytics":1,"confirmationType":1,"confirmationMessage":false,"confirmationUrl":"","confirmationSeconds":null,"confirmationAppend":0,"confirmationAlias":0,"showOnlyMessage":1,"redirectToUrl":2,"rules":[],"fieldIds":["text_1","date_1","radio_1_0","radio_1_1","textarea_2","text_2","text_3","email_1","number_1","radio_2_0","radio_2_1","radio_2_2","radio_2_3","checkbox_5_0","checkbox_5_1","checkbox_5_2","checkbox_5_3","checkbox_5_4","checkbox_5_5","checkbox_5_6","checkbox_5_7","checkbox_5_8","checkbox_5_9","checkbox_5_10","checkbox_5_11","checkbox_5_12","checkbox_5_13","checkbox_5_14","checkbox_5_15","textarea_1","button_1"],"submitted":false,"runOppositeActions":true,"skips":[],"reCaptchaVersion":"3","reCaptchaSiteKey":"6LeZkxYiAAAAAKVITdlqhB6u2P7VSKxi6xInXns2","defaultValues":false,"i18n":{"complete":"Complete","unexpectedError":"An unexpected error has occurred. Please retry later."}};
   </script>
 </head>
 <body>
@@ -443,7 +443,7 @@ input[type=radio] {
                     Bharatanayam </label>
                 </div>
                 <div class="checkbox">
-                    <input type="checkbox" name="checkbox_5[]" id="checkbox_5_11" value="Namasangeerthanam" data-alias=""data-required="true"  ><label for="checkbox_5_11" class="checkbox-inline">
+                    <input type="checkbox" name="checkbox_5[]" id="checkbox_5_11" value="Namasangeerthanam" data-alias="" data-required="true"  ><label for="checkbox_5_11" class="checkbox-inline">
                     Namasangeerthanam </label>
                 </div>
                 <div class="checkbox">
@@ -460,6 +460,8 @@ input[type=radio] {
                 </div>
 
             </fieldset>
+
+            <span id="checkbox_5"></span>
         </div>
 </div>
 
@@ -497,26 +499,35 @@ input[type=radio] {
         </div>
     </div>
 </div>
-<script src="js/libs/jquery.js"></script><script src="js/libs/signature_pad.umd.js"></script><script src='https://www.google.com/recaptcha/api.js?render=6LeZkxYiAAAAAKVITdlqhB6u2P7VSKxi6xInXns2'></script><script>
-$(document).ready(function() {
-    var addTokenToForm = function (token) {
-        $('#g-recaptcha-response').remove();
-        grecaptcha.execute('6LeZkxYiAAAAAKVITdlqhB6u2P7VSKxi6xInXns2', {action: 'easy_forms'}).then(function(token) {
-            $('<input>').attr({
-                type: 'hidden',
-                value: token,
-                id: 'g-recaptcha-response',
-                name: 'g-recaptcha-response'
-            }).appendTo('form');
+<script src="js/libs/jquery.js"></script>
+<script src="js/libs/signature_pad.umd.js"></script>
+<script src='https://www.google.com/recaptcha/api.js?render=6LeZkxYiAAAAAKVITdlqhB6u2P7VSKxi6xInXns2'></script>
+
+<script src="js/libs/jquery.form.js"></script>
+<script src="js/form.utils.min.js"></script>
+<script src="js/form.embed.min.js"></script>
+<script src="//forms.sva.run/static_files/js/ui-widgets/flatpickr.class.js"></script>
+<script src="//forms.sva.run/static_files/js/ui-widgets/intl-tel-input.tel.js"></script>
+<script>
+    $(document).ready(function() {
+        var addTokenToForm = function (token) {
+            $('#g-recaptcha-response').remove();
+            grecaptcha.execute('6LeZkxYiAAAAAKVITdlqhB6u2P7VSKxi6xInXns2', {action: 'easy_forms'}).then(function(token) {
+                $('<input>').attr({
+                    type: 'hidden',
+                    value: token,
+                    id: 'g-recaptcha-response',
+                    name: 'g-recaptcha-response'
+                }).appendTo('form');
+            });
+        };
+        grecaptcha.ready(function () {
+            addTokenToForm();
         });
-    };
-    grecaptcha.ready(function () {
-        addTokenToForm();
+        formEl.on('error', function (event) {
+            addTokenToForm();
+        });
     });
-    formEl.on('error', function (event) {
-        addTokenToForm();
-    });
-});
-</script><script src="js/libs/jquery.form.js"></script><script src="js/form.utils.min.js"></script><script src="js/libs/math.min.js"></script><script src="js/form.evaluate.min.js"></script><script src="js/libs/numeral.min.js"></script><script src="js/libs/locales/numeral.min.js"></script><script src="js/rules.engine.min.js"></script><script src="js/rules.engine.run.min.js"></script><script src="js/form.embed.min.js"></script><script src="//forms.sva.run/static_files/js/ui-widgets/flatpickr.class.js"></script><script src="//forms.sva.run/static_files/js/ui-widgets/intl-tel-input.tel.js"></script><script src="//forms.sva.run/static_files/js/ui-widgets/jquery.mask.js"></script><script src="//forms.sva.run/static_files/js/ui-widgets/krajee.file-input.class.js"></script><script src="//forms.sva.run/static_files/js/ui-widgets/select2.class.js"></script>
+</script>
 </body>
 </html>
